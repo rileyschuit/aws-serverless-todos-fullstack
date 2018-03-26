@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  padding: 3px;
+}
+
+.Header {
+  margin-bottom: 10px;
+}
+
+.ItemList {
+  margin-top: 20px;
+}
+
+.Item.isDisable {
+  pointer-events: none;
+  opacity: .5;
+  background-color: yellow;
+}
+
+input[type="text"] {
+  padding: 5px;
+}
+
+.Item {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.Item label > * {
+  margin-right: 10px;
+}
+
+.Item input:checked + span {
+  text-decoration: line-through;
+}
