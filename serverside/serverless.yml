@@ -28,7 +28,6 @@ functions:
           cors: true
           origin: '*'
 
-
   list:
     handler: todos/list.list
     events:
@@ -37,7 +36,6 @@ functions:
           method: get
           cors: true
           origin: '*'
-
 
   get:
     handler: todos/get.get
@@ -48,7 +46,6 @@ functions:
           cors: true
           origin: '*'
 
-
   update:
     handler: todos/update.update
     events:
@@ -57,7 +54,6 @@ functions:
           method: put
           cors: true
           origin: '*'
-
 
   delete:
     handler: todos/delete.delete

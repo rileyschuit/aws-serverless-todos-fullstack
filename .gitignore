@@ -1,13 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-
-# testing
-/coverage
-
-# production
-/build
+node_modules
 
 # misc
 .DS_Store
@@ -22,5 +16,5 @@ yarn-error.log*
 yarn.lock
 package-lock.json
 
-#serverless 
+#serverless
 .serverless
