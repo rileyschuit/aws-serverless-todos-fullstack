@@ -33,6 +33,7 @@ class TodoFrom extends Component {
         )
       }
       this.fromInput.removeAttribute('disabled')
+      window.location.reload();
     })
   }
 

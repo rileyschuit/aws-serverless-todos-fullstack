@@ -5,7 +5,7 @@ import TodoHeader from './TodoHeader'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 
-window.apiUrl = '//5a23ef1b3a6dd70012db4ed8.mockapi.io/todo/'
+window.apiUrl = "https://8szbj4na6c.execute-api.us-east-1.amazonaws.com/dev/todos"
 
 class App extends Component {
   constructor (props) {

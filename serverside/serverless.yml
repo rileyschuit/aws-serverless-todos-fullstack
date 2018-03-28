@@ -26,6 +26,8 @@ functions:
           path: todos
           method: post
           cors: true
+          origin: '*'
+
 
   list:
     handler: todos/list.list
@@ -34,6 +36,8 @@ functions:
           path: todos
           method: get
           cors: true
+          origin: '*'
+
 
   get:
     handler: todos/get.get
@@ -42,6 +46,8 @@ functions:
           path: todos/{id}
           method: get
           cors: true
+          origin: '*'
+
 
   update:
     handler: todos/update.update
@@ -50,6 +56,8 @@ functions:
           path: todos/{id}
           method: put
           cors: true
+          origin: '*'
+
 
   delete:
     handler: todos/delete.delete
@@ -58,6 +66,35 @@ functions:
           path: todos/{id}
           method: delete
           cors: true
+          origin: '*'
+
+  auth:
+    handler: auth/authOperation.handler
+    events:
+      - http:
+          path: auth/{operation}
+          method: post
+          integration: lambda
+          cors: true
+          origins:
+            - '*'
+          request:
+            passThrough: WHEN_NO_MATCH
+            template:
+              application/json: '{ "operation" : "$input.params(''operation'')", "authorization" : "$input.params().header.get(''Authorization'')", "payload" : $input.json(''$'') }'
+          response:
+            statusCodes:
+              200:
+                template:
+                  application/json: ""
+              400:
+                pattern: 'Bad Request.*'
+              401:
+                pattern: 'Unauthorized.*'
+              404:
+                pattern: 'Not Found.*'
+              409:
+                pattern: 'Conflict.*'
 
 resources:
   Resources:
