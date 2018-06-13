@@ -1,4 +1,4 @@
-service: serverless-rest-api-with-dynamodb
+service: TODO-serverless-w-dynamodb
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
@@ -25,8 +25,16 @@ functions:
       - http:
           path: todos
           method: post
-          cors: true
-          origin: '*'
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   list:
     handler: todos/list.list
@@ -34,8 +42,16 @@ functions:
       - http:
           path: todos
           method: get
-          cors: true
-          origin: '*'
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   get:
     handler: todos/get.get
@@ -43,8 +59,16 @@ functions:
       - http:
           path: todos/{id}
           method: get
-          cors: true
-          origin: '*'
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   update:
     handler: todos/update.update
@@ -52,8 +76,16 @@ functions:
       - http:
           path: todos/{id}
           method: put
-          cors: true
-          origin: '*'
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   delete:
     handler: todos/delete.delete
@@ -61,8 +93,16 @@ functions:
       - http:
           path: todos/{id}
           method: delete
-          cors: true
-          origin: '*'
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   auth:
     handler: auth/authOperation.handler
