@@ -9,11 +9,14 @@ module.exports.update = (event, context, callback) => {
   const data = JSON.parse(event.body);
 
   // validation
-  if (typeof data.text !== 'string' || typeof data.checked !== 'boolean') {
+  if (typeof data.todotext !== 'string' || typeof data.checked !== 'boolean') {
     console.error('Validation Failed');
+    console.log(data);
     callback(null, {
       statusCode: 400,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { 'Content-Type': 'text/plain',
+        'Access-Control-Allow-Origin' : '*'
+      },
       body: 'Couldn\'t update the todo item.',
     });
     return;
@@ -24,15 +27,12 @@ module.exports.update = (event, context, callback) => {
     Key: {
       id: event.pathParameters.id,
     },
-    ExpressionAttributeNames: {
-      '#todo_text': 'text',
-    },
     ExpressionAttributeValues: {
-      ':text': data.text,
       ':checked': data.checked,
+      ':text': data.todotext,
       ':updatedAt': timestamp,
     },
-    UpdateExpression: 'SET #todo_text = :text, checked = :checked, updatedAt = :updatedAt',
+    UpdateExpression: 'SET checked = :checked, todotext = :text, updatedAt = :updatedAt',
     ReturnValues: 'ALL_NEW',
   };
 
@@ -54,7 +54,7 @@ module.exports.update = (event, context, callback) => {
       statusCode: 200,
       headers: {
           'Access-Control-Allow-Origin' : '*',
-          'Access-Control-Allow-Headers':'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+          'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
           'Access-Control-Allow-Credentials' : true,
           'Content-Type': 'application/json'
         },

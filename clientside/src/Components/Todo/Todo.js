@@ -5,7 +5,7 @@ import TodoHeader from './TodoHeader'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 
-window.apiUrl = "https://8szbj4na6c.execute-api.us-east-1.amazonaws.com/dev/todos"
+window.apiUrl = "https://snbsy18hac.execute-api.us-east-1.amazonaws.com/dev/todos/" // needs trailing slash
 
 class App extends Component {
   constructor (props) {
@@ -37,15 +37,16 @@ class App extends Component {
     el.classList.add('isDisable')
 
     const status = {
-      status: !todo.status
+      "checked": !todo.status,
+      "todotext": todo.todotext
     }
     const newArray = _.cloneDeep(this.state.data)
     const todoIndex = _.findIndex(newArray, ['id', todo.id])
 
     http.put(window.apiUrl + todo.id, status).then(res => {
       if (res.data.status)
-        newArray[todoIndex].status = true
-      else newArray[todoIndex].status = false
+        newArray[todoIndex].checked = true
+      else newArray[todoIndex].checked = false
       this.changeData(newArray)
       el.classList.remove('isDisable')
     })

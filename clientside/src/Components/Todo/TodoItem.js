@@ -16,14 +16,14 @@ class TodoItem extends Component {
   }
 
   render () {
-    const { id, status, text } = this.props.todo
+    const { id, status, todotext } = this.props.todo
     return (
       <li className="Item" data-id={id}>
         <label>
           <input checked={status}
                  type="checkbox"
                  onChange={this.change}/>
-          <span>{text}</span>
+          <span>{todotext}</span>
           <button type="button"
                   onClick={this.remove}>X
           </button>
